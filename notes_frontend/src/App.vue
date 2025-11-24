@@ -1,85 +1,68 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot" />
+        <span class="title">Ocean Notes</span>
+      </div>
+      <div class="status">
+        <span class="badge">Vue 3 + Vite</span>
+      </div>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <div class="content">
+      <RouterView />
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.app-shell {
+  min-height: 100vh;
+  background: var(--oc-bg);
+  color: var(--oc-text);
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--oc-border);
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 700;
+  color: var(--oc-primary);
 }
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.dot {
+  width: 10px; height: 10px;
+  background: var(--oc-primary);
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px var(--oc-primary-50);
 }
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.title { letter-spacing: .2px; }
+.status .badge {
+  font-size: .75rem;
+  color: var(--oc-muted);
+  background: var(--oc-bg-soft);
+  border: 1px solid var(--oc-border);
+  padding: .25rem .5rem;
+  border-radius: .5rem;
 }
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.content {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 </style>
